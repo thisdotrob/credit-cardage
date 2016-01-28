@@ -1,4 +1,5 @@
 # credit-cardage
+![Build Status](https://travis-ci.org/thisdotrob/credit-cardage.svg?branch=master)
 
 A single page app to compare credit cards, built on an [angular-seed](angular-seed) base.
 
