@@ -10,6 +10,27 @@ describe('credit cardage app', function() {
     expect(browser.getLocationAbsUrl()).toMatch("/homeView");
   });
 
+  it('displays the main logo', function() {
+    browser.get('index.html');
+    var img = element(by.id('logo'));
+    expect(img.isPresent()).toBe(true);
+    expect(img.getAttribute('src')).toContain('img/logo.svg');
+  })
+
+  it('should not have any broken images', function () {
+    browser.executeAsyncScript(function (callback) {
+        var imgs = document.getElementsByTagName('img');
+        var loaded = 0;
+        for (var i = 0; i < imgs.length; i++) {
+            if (imgs[i].naturalWidth > 0) {
+                loaded = loaded + 1;
+            };
+        };
+        callback(imgs.length - loaded);
+     }).then(function (brokenImagesCount) {
+        expect(brokenImagesCount).toBe(0);
+    });
+  });
 
   describe('homeView', function() {
 
