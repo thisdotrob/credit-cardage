@@ -76,9 +76,8 @@ describe('credit cardage app', function() {
       browser.get('index.html#/financeView');
     });
 
-    it('should render financeView when user navigates to /financeView', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for finance view/);
+    it('should list credit cards by ascending APR', function() {
+      expect(element.all(by.repeater('card in financeCtrl.cards')).count()).toBe(4);
     });
   });
 
