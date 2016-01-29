@@ -1,6 +1,16 @@
 <div ng-controller="financeViewCtrl as financeCtrl">
   <div ng-repeat="card in financeCtrl.cards | orderBy: 'apr'">
-    <span>{{ card.name }}</span>
-    <span>{{ card.apr }}% APR</span>
+    <div>
+      <span ng-click="financeCtrl.showCard(card)" ng-class="{
+        'glyphicon glyphicon-chevron-right': financeCtrl.cardShowing != card,
+        'glyphicon glyphicon-chevron-down': financeCtrl.cardShowing == card
+      }"></span>
+      <span>{{ card.name }}</span>
+      <span>{{ card.apr }}% APR</span>
+    </div>
+    <div ng-show="financeCtrl.cardShowing == card">
+      DETAILS
+    </div>
+
   </div>
 </div>

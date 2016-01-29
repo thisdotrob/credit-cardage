@@ -94,10 +94,19 @@ describe('credit cardage app', function() {
 
       var actualAPRs = getActuals('card.apr');
       var actualNames = getActuals('card.name');
-      
+
       expect(actualAPRs).toEqual(expectedAPRs);
       expect(actualNames).toEqual(expectedNames);
     });
+
+    describe('showing card details', function() {
+      it('it toggles the chevron to the down position', function() {
+        var expectedClass = 'glyphicon glyphicon-chevron-down';
+        var card = element.all(by.repeater('card in financeCtrl.cards')).first();
+        var glyph = card.element(by.css('.glyphicon')).click();
+        expect(glyph.getAttribute('class')).toBe(expectedClass);
+      });
+    })
 
   });
 
