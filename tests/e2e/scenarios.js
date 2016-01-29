@@ -99,7 +99,7 @@ describe('credit cardage app', function() {
 
     });
 
-    describe('showing card details', function() {
+    describe('clicking on a card', function() {
 
       var glyph;
 
@@ -108,7 +108,7 @@ describe('credit cardage app', function() {
         glyph.click();
       });
 
-      it('it toggles the chevron to the down position', function() {
+      it('toggles the chevron to the down position', function() {
         var expectedClass = 'glyphicon glyphicon-chevron-down';
         expect(glyph.getAttribute('class')).toBe(expectedClass);
       });
@@ -117,6 +117,13 @@ describe('credit cardage app', function() {
         var img = element.all(by.css('.card-image')).first();
         expect(img.isPresent()).toBe(true);
         expect(img.getAttribute('src')).toContain('img/CARD_315.png');
+      });
+
+      it('shows the card description', function() {
+        var expected = 'Earn 3% Rewards in all supermarkets until 31st' +
+          ' December (0.5% at their petrol stations).';
+        var actual = element.all(by.css('.card-info')).first().getText()
+        expect(actual).toEqual(expected);
       });
     })
 
