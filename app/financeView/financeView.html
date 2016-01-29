@@ -1,23 +1,44 @@
-<div ng-controller="financeViewCtrl as financeCtrl">
+<div class="card-list-view" ng-controller="financeViewCtrl as financeCtrl">
 
-  <div ng-repeat="card in financeCtrl.cards | orderBy: 'apr'">
+  <section ng-repeat="card in financeCtrl.cards | orderBy: 'apr'">
+    <article class="card-container">
 
-    <div>
-      <span ng-click="financeCtrl.showCard(card)" ng-class="{
-        'glyphicon glyphicon-chevron-right': financeCtrl.cardShowing != card,
-        'glyphicon glyphicon-chevron-down': financeCtrl.cardShowing == card
-      }"></span>
-      <span>{{ card.name }}</span>
-      <span>{{ card.apr }}% APR</span>
-    </div>
+      <div class="card-title">
+        <div class="card-name-container" ng-click="financeCtrl.showCard(card)">
+          <p>
+            <span ng-class="{
+              'glyphicon glyphicon-chevron-right': financeCtrl.cardShowing != card,
+              'glyphicon glyphicon-chevron-down': financeCtrl.cardShowing == card
+            }"></span>
+            <span class="card-name">{{ card.name }}</span>
+          </p>
+        </div>
+        <div class="card-apr">
+          <p>{{ card.apr }}% APR</p>
+        </div>
+      </div>
 
-    <div ng-show="financeCtrl.cardShowing == card">
-      <img class="card-image" ng-src="img/{{card.code}}.png">
-      <span class="card-info">{{ card.information }}</span>
-      <span class="card-cashback">{{ card.cashback | currency: "£":2 }}</span>
+      <div class="card-details" ng-show="financeCtrl.cardShowing == card">
 
-    </div>
+        <div class="card-image-container">
+          <img class="card-image" ng-src="img/{{card.code}}.png">
+        </div>
 
-  </div>
+        <div class="card-cashback-container">
+          <p class="cashback-text">Cashback</p>
+          <div class="cashback-value">
+            <p class="card-cashback">{{ card.cashback | currency: "£":2 }}</p>
+          </div>
+        </div>
 
+        <hr class="vert-line">
+
+        <div class="card-info-container">
+          <span class="card-info">{{ card.information }}</span>
+        </div>
+
+      </div>
+
+    </article>
+  </section>
 </div>

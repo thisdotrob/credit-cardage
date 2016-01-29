@@ -60,17 +60,6 @@ describe('credit cardage app', function() {
     });
   });
 
-  describe('homeView', function() {
-    beforeEach(function() {
-      browser.get('index.html#/homeView');
-    });
-
-    it('should render homeView when user navigates to /homeView', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for home view/);
-    });
-  });
-
   describe('financeView', function() {
     beforeEach(function() {
       browser.get('index.html#/financeView');
@@ -100,17 +89,8 @@ describe('credit cardage app', function() {
     });
 
     describe('clicking on a card', function() {
-
-      var glyph;
-
       beforeEach(function() {
-        glyph = element.all(by.css('.glyphicon')).first()
-        glyph.click();
-      });
-
-      it('toggles the chevron to the down position', function() {
-        var expectedClass = 'glyphicon glyphicon-chevron-down';
-        expect(glyph.getAttribute('class')).toBe(expectedClass);
+        element.all(by.css('.card-name-container')).first().click();
       });
 
       it('displays the card image', function() {
