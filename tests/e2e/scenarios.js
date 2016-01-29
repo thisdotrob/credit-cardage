@@ -125,6 +125,11 @@ describe('credit cardage app', function() {
         var actual = element.all(by.css('.card-info')).first().getText()
         expect(actual).toEqual(expected);
       });
+
+      it('shows the card cashback rate', function() {
+        var actual = element.all(by.css('.card-cashback')).first().getText();
+        expect(actual).toEqual("£50.10");
+      })
     })
 
   });
