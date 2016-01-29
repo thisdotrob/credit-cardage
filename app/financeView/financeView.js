@@ -11,7 +11,7 @@ angular.module('creditCardageApp.financeView', ['ngRoute'])
 
 .controller('financeViewCtrl', ['$http', function($http) {
   var vm = this;
-  
+
   $http.get('cards.json').then(function(response){
     vm.cards = response.data;
   });

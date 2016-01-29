@@ -77,8 +77,25 @@ describe('credit cardage app', function() {
     });
 
     it('should list credit cards by ascending APR', function() {
-      expect(element.all(by.repeater('card in financeCtrl.cards')).count()).toBe(4);
+      var getActuals = function(column) {
+        return element.all(
+          by.repeater('card in financeCtrl.cards').column(column)
+        ).map(function(element) {
+          return element.getText();
+        });
+      }
+      var expectedAPRs =  [ "17.4% APR", "18.9% APR", "22.9% APR", "28.2% APR"];
+      var expectedNames = [
+        "Halifax", "Sainsbury's", "Barclaycard Platinum", "Virgin Money"
+      ].map(function(name) {
+        return name + " Credit Card";
+      });
+      var actualAPRs = getActuals('card.apr');
+      var actualNames = getActuals('card.name');
+      expect(actualAPRs).toEqual(expectedAPRs);
+      expect(actualNames).toEqual(expectedNames);
     });
+
   });
 
 });

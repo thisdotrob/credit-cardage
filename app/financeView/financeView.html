@@ -1,5 +1,6 @@
 <div ng-controller="financeViewCtrl as financeCtrl">
-  <div ng-repeat="card in financeCtrl.cards">
-    Text
+  <div ng-repeat="card in financeCtrl.cards | orderBy: 'apr'">
+    <span>{{ card.name }}</span>
+    <span>{{ card.apr }}% APR</span>
   </div>
 </div>
