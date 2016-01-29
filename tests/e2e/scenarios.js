@@ -84,27 +84,39 @@ describe('credit cardage app', function() {
         return name + " Credit Card";
       });
 
-      var getActuals = function(column) {
+      function getActuals(column) {
         return element.all(
           by.repeater('card in financeCtrl.cards').column(column)
         ).map(function(element) {
           return element.getText();
         });
-      }
+      };
 
       var actualAPRs = getActuals('card.apr');
       var actualNames = getActuals('card.name');
-
       expect(actualAPRs).toEqual(expectedAPRs);
       expect(actualNames).toEqual(expectedNames);
+
     });
 
     describe('showing card details', function() {
+
+      var glyph;
+
+      beforeEach(function() {
+        glyph = element.all(by.css('.glyphicon')).first()
+        glyph.click();
+      });
+
       it('it toggles the chevron to the down position', function() {
         var expectedClass = 'glyphicon glyphicon-chevron-down';
-        var card = element.all(by.repeater('card in financeCtrl.cards')).first();
-        var glyph = card.element(by.css('.glyphicon')).click();
         expect(glyph.getAttribute('class')).toBe(expectedClass);
+      });
+
+      it('displays the card image', function() {
+        var img = element.all(by.css('.card-image')).first();
+        expect(img.isPresent()).toBe(true);
+        expect(img.getAttribute('src')).toContain('img/CARD_315.png');
       });
     })
 
